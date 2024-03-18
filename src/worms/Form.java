@@ -26,24 +26,40 @@ public class Form extends JFrame{
     public JButton shoot1;
     public JButton shoot2;
     public Thread timer;
-
+    public JTextField TFv1;
+    public JTextField TFv2;
+    public JTextField TFa1;
+    public JTextField TFa2;
     public Form() {
         
         t=0;
         shoot1=new JButton("shoot");
         shoot2=new JButton("shoot");
-        shoot1.setBounds(0,10,100,50);
-        shoot2.setBounds(400,10,100,50);
+        shoot1.setBounds(0,10,100,20);
+        shoot2.setBounds(700,10,100,20);
+        TFv1=new JTextField();
+        TFv2=new JTextField();
+        TFa1=new JTextField();
+        TFa2=new JTextField();
+        TFv1.setBounds(0,30,100,20);
+        TFa1.setBounds(0,50,100,20);
+        TFv2.setBounds(700,30,100,20);
+        TFa2.setBounds(700,50,100,20);
         
         //Castle(int x0, int y0, int x1, int y1, double theta, double v0)
-            castle[0]=new Castle(200,100,0,0,99,70);
-            castle[1]=new Castle(700,100,0,0,135,70);
+            castle[0]=new Castle(200,100,99,70);
+            castle[1]=new Castle(700,100,135,70);
+            castle[0].enemy=castle[1];
+            castle[1].enemy=castle[0];
         ActionListener alshoot1=new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent ae) {
                 if(castle[0].shoot==true){
                     return;
                 }
+                castle[0].v0=Double.valueOf(TFv1.getText());
+                castle[0].theta=Double.valueOf(TFa1.getText());
+                castle[0].vxy();
                 castle[0].y1=castle[0].y0;
                 castle[0].ti=t;
                 //castle[]
@@ -57,6 +73,9 @@ public class Form extends JFrame{
                 if(castle[1].shoot==true){
                     return;
                 }
+                castle[1].v0=Double.valueOf(TFv2.getText());
+                castle[1].theta=Double.valueOf(TFa2.getText());
+                castle[1].vxy();
                 castle[1].y1=castle[1].y0;
                 castle[1].ti=t;
                 castle[1].shoot=true;
@@ -71,7 +90,7 @@ public class Form extends JFrame{
                 super.paint(g);
                 Graphics2D g2d= (Graphics2D)g;
                 for(int i=0;i<castle.length;i++){
-                    castle[i].draw(g2d, Color.yellow);
+                    castle[i].draw(g2d, Color.BLACK);
                     if(castle[i].shoot==true){
                         
                         castle[i].shoot(g2d,Color.BLUE);
@@ -88,6 +107,10 @@ public class Form extends JFrame{
         panel.setPreferredSize(new Dimension(800,300));
         panel.add(shoot1);
         panel.add(shoot2);
+        panel.add(TFv1);
+        panel.add(TFv2);
+        panel.add(TFa1);
+        panel.add(TFa2);
         timer=new Thread(){
 
             @Override

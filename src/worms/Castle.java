@@ -23,14 +23,14 @@ public class Castle {
     public boolean shoot;
     public double t;
     public double ti;
-
-    public Castle(int x0, int y0, int x1, int y1, double theta, double v0) {
+    public Castle enemy;
+    public Castle(int x0, int y0, double theta, double v0) {
         t=0;
         ti=0;
         this.x0 = x0;
         this.y0 = y0;
-        this.x1 = x1;
-        this.y1 = y1;
+        this.x1 = x0;
+        this.y1 = y0;
         this.theta = theta;
         this.v0 = v0;
         vx1=(v0*Math.cos(Math.toRadians(theta)));
@@ -69,7 +69,7 @@ public class Castle {
     
     public void calculate(double t0){
         
-        if(y1<=0&& x0!=x1){
+        if(y1<=0){
             System.out.println("se detubo el coso");
             shoot=false;
             y1=y0;
@@ -77,7 +77,14 @@ public class Castle {
             
             return;
         }
-        
+        if(x1<=enemy.x0+10 &&x1>=enemy.x0 && y1 <=enemy.y0+10&& y1 >=enemy.y0-10){
+            System.out.println("el enemigo se murio "+x1+","+y1);
+            shoot=false;
+            y1=y0;
+            x1=x0;
+            
+            return;
+        }
         t=t0-ti;
         
         x1=(int)(x0+vx1*t);
