@@ -19,7 +19,8 @@ import javax.swing.*;
  * @author Elohim Becerra
  */
 public class Form extends JFrame{
-    
+        //public Image Miku=new ImageIcon(getClass().getResource("./Miku.png")).getImage();
+
     public double t;
     public Castle castle[]=new Castle[2];
     public JPanel panel;
@@ -30,8 +31,11 @@ public class Form extends JFrame{
     public JTextField TFv2;
     public JTextField TFa1;
     public JTextField TFa2;
+    public JLabel label;
     public Form() {
-        
+        label=new JLabel("");
+        label.setBounds(300,0,200,50);
+        label.setVisible(false);
         t=0;
         shoot1=new JButton("shoot");
         shoot2=new JButton("shoot");
@@ -47,8 +51,8 @@ public class Form extends JFrame{
         TFa2.setBounds(700,50,100,20);
         
         //Castle(int x0, int y0, int x1, int y1, double theta, double v0)
-            castle[0]=new Castle(200,100,99,70);
-            castle[1]=new Castle(700,100,135,70);
+            castle[0]=new Castle("iori",200,100,99,70,"./iori.png",9,label);
+            castle[1]=new Castle("miku",700,100,135,70,"./Miku.png",2,label);
             castle[0].enemy=castle[1];
             castle[1].enemy=castle[0];
         ActionListener alshoot1=new ActionListener(){
@@ -100,7 +104,6 @@ public class Form extends JFrame{
                 
                 
                 
-                
             }
         };
         panel.setLayout(null);
@@ -111,6 +114,7 @@ public class Form extends JFrame{
         panel.add(TFv2);
         panel.add(TFa1);
         panel.add(TFa2);
+        panel.add(label);
         timer=new Thread(){
 
             @Override
