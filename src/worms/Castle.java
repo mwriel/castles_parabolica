@@ -81,13 +81,13 @@ public class Castle {
                 img.getWidth(null)/scale,
                 img.getHeight(null)/scale, 
                 null);
-        g2d.fillOval(x0,295-y0, 5,5);
+        //g2d.fillOval(x0,295-y0, 5,5);
     }
     
     public void calculate(double t0){
         
         if(y1<=0||x1<0||x1>900){
-            System.out.println("se detubo el coso");
+            System.out.println("fallo el tiro");
             
             shoot=false;
             y1=y0;
@@ -98,7 +98,8 @@ public class Castle {
         }
         int enemyW=enemy.img.getWidth(null)/enemy.scale;
         int enemyH=enemy.img.getHeight(null)/enemy.scale;
-        if(x1<=enemy.x0+(enemyW/2) 
+        if(
+                x1<=enemy.x0+(enemyW/2) 
                 && x1>=(enemy.x0-enemyW/2)
                 && y1<=enemy.y0+enemyH/2
                 && y1>=enemy.y0-enemyH/2

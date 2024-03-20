@@ -41,10 +41,10 @@ public class Form extends JFrame{
         shoot2=new JButton("shoot");
         shoot1.setBounds(0,10,100,20);
         shoot2.setBounds(700,10,100,20);
-        TFv1=new JTextField();
-        TFv2=new JTextField();
-        TFa1=new JTextField();
-        TFa2=new JTextField();
+        TFv1=new JTextField("0");
+        TFv2=new JTextField("0");
+        TFa1=new JTextField("0");
+        TFa2=new JTextField("0");
         TFv1.setBounds(0,30,100,20);
         TFa1.setBounds(0,50,100,20);
         TFv2.setBounds(700,30,100,20);
